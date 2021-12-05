@@ -1,37 +1,21 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="index.js"></script>
+    <link rel="stylesheet" href="style.css">
     <title>Get your movie details</title>
-    <style>
-        div.slide-left {
-          width:100%;
-          overflow:hidden;
-        }
-        div.slide-left p {
-          animation: slide-left 3s;
-          
-        }
-        @keyframes slide-left {
-          from {
-            margin-left: 100%;
-            width: 300%;
-            
-          }
-          to {
-            margin-left: 0%;
-            width: 100%;
-          }
-        }
-        </style>
 </head>
+
 <body style="background-color: black;">
+
     <div>
         <h1  style="color: blue; margin-left: 35%; font-style:italic; ">Welcome to the movies world !</h1>
     </div>
+
     <div style="margin: 2%; border:purple; border-radius: 2%; border-style:double;">
         <div style="margin: 7%; margin-left: 15%;">
             <input type="text" id="moviename" placeholder="Enter Movie Name" style="padding: 15px 325px; border-radius: 15px; font-size: 30px; text-align: center;" > <br> <br> <br>
@@ -43,49 +27,9 @@
         <img src="" id="img1" style="width: 250px; height: 350px; border-radius: 15px; border: 5px solid #ddd; margin-left: 34%; display: none;">
         <div class="slide-left">
             <p id="page" style="color: tomato;">Search your Movie here.</p>
-            </div>
+        </div>
     </div>
+
 </body>
-<script>
-function f1(){
-    var name = document.getElementById("moviename").value;
-    if(name=="")
-    {
-        document.getElementById("img1").style.display = "none";
-        document.getElementById("page").style.color = "red";
-        document.getElementById("page").style.fontSize = "160%";
-        document.getElementById("page").innerHTML = "Enter the movie name first."
-    }
-    else
-    {
-        var key1 = "ee3f7e5c";
-        var xhttp = new XMLHttpRequest();
-        xhttp.responseType = "json";
-        url = "https://www.omdbapi.com/?apikey="+ key1 + "&t=" + name ;
-        xhttp.open("GET", url);
-        xhttp.send();
-        xhttp.onload = function(){
-            if(xhttp.response["Response"]=="False")
-            {
-                document.getElementById("img1").style.display = "none";
-                document.getElementById("page").style.fontSize = "200%";
-                document.getElementById("page").style.color = "red";
-                document.getElementById("page").innerHTML = "Please enter the correct name."
-            }
-            else
-            {
-            document.getElementById("img1").src = xhttp.response["Poster"];
-            document.getElementById("img1").style.display = "inline";
-            document.getElementById("page").style.color = "grey";
-            document.getElementById("page").style.fontSize = "90%";
-            document.getElementById("page").style.marginLeft = "5%";
-            document.getElementById("page").innerHTML =   "Title: " +  xhttp.response["Title"]              + "<br>" + "Year: " + xhttp.response["Year"] +
-            "<br>" + "Genre: " + xhttp.response["Genre"] + "<br>" + "Director: " +             xhttp.response["Director"] + "<br>" +
-            "Actors: " + xhttp.response["Actors"] + "<br>" + "Plot: " + xhttp.response["Plot"] +                "<br>" + "ImdbRating: " +
-            xhttp.response["imdbRating"];
-            }
-        };
-    }
-}
-</script>
+
 </html>
